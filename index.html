@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+  </head>
+  <style>
+    .container {
+      width: 40vw;
+      height: 90vh;
+      background: #fff;
+      margin: auto !important;
+      font-family: sans-serif;
+    }
+    .result {
+      width: 94.3%;
+      height: 25%;
+      background: #fff;
+      border: 10px solid gray;
+      color: #000;
+      display: flex;
+      justify-content: right !important;
+      align-items: center;
+      font-size: 40px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    table {
+      border: 1px solid gray;
+      border-top: red;
+      width: 100%;
+      height: 75%;
+      background: gray;
+      border-spacing: 10px;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+    td {
+      /* border: 1px solid #000; */
+      /* margin: 5px; */
+      text-align: center;
+      font-size: 30px;
+      cursor: pointer;
+      width: 20%;
+      background: rgb(247, 240, 240);
+      border-radius: 10px;
+    }
+    /* td:hover {
+      background: gray;
+      color: #fff;
+    } */
+    @media (max-width: 768px) {
+      .container {
+        width: 80vw;
+        height: 90vh;
+        background: #fff;
+        margin: auto !important;
+      }
+    }
+    #clear {
+      background: rgba(255, 0, 0, 0.521);
+      color: #fff;
+    }
+
+    #res {
+      background: rgba(0, 0, 255, 0.514);
+      color: #fff;
+    }
+    .result {
+      padding-right: 2%;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="result" id="result" step="any"></div>
+      <table>
+        <tbody>
+          <tr>
+            <td id="clear">C</td>
+            <td class="opr" value="/">/</td>
+            <td class="opr" value="*">*</td>
+            <td id="backspace">B</td>
+          </tr>
+          <tr>
+            <td class="num">7</td>
+            <td class="num">8</td>
+            <td class="num">9</td>
+            <td class="opr" value="-">-</td>
+          </tr>
+          <tr>
+            <td class="num">4</td>
+            <td class="num">5</td>
+            <td class="num">6</td>
+            <td class="opr" value="-">+</td>
+          </tr>
+          <tr>
+            <td class="num">1</td>
+            <td class="num">2</td>
+            <td class="num">3</td>
+            <td id="res" rowspan="2">=</td>
+          </tr>
+          <tr>
+            <td class="opr">%</td>
+            <td class="num">0</td>
+            <td class="num">.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script>
+      const Num = document.querySelectorAll(".num");
+      const Opr = document.querySelectorAll(".opr");
+      const result = document.querySelector("#result");
+      Num.forEach((element) => {
+        element.addEventListener("click", () => {
+          result.innerHTML += element.innerText;
+          //   alert(element.innerText);
+        });
+      });
+
+      Opr.forEach((ele) => {
+        ele.addEventListener("click", () => {
+          result.innerHTML += ele.innerText;
+        });
+      });
+      const res = document.querySelector("#res");
+
+      res.addEventListener("click", () => {
+        result.innerHTML = eval(result.innerHTML);
+      });
+
+      const Clear = document.getElementById("clear");
+
+      Clear.addEventListener("click", () => {
+        result.innerHTML = "";
+      });
+
+      const Backspace = document.getElementById("backspace");
+      Backspace.addEventListener("click", () => {
+        result.innerHTML = result.innerHTML.substring(
+          0,
+          result.innerHTML.length - 1
+        );
+      });
+    </script>
+  </body>
+</html>
